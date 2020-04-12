@@ -1,4 +1,4 @@
-"let &runtimepath="/home/randy/etc/vim/vim/"
+let &runtimepath='/home/randy/etc/vim/vim/'
 set nocompatible
 set nu rnu
 set hlsearch
@@ -9,18 +9,18 @@ set directory=$XDG_DATA_HOME/vim
 set backupdir=$XDG_DATA_HOME/vim
 set viewdir=$XDG_DATA_HOME/vim
 set viminfo+=n$XDG_DATA_HOME/vim/viminfo
-set runtimepath=$XDG_CONFIG_HOME/vim/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
-"set noshowmode
-"set laststatus=2
+set runtimepath=~/etc/vim/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+set noshowmode
+set laststatus=2
 set t_Co=256
 
-" call plug#begin('~/etc/vim/vim/plugged')
-" " Plug 'itchyny/lightline.vim'
-" Plug 'dylanaraps/wal.vim'
-" call plug#end()
+call plug#begin('/home/randy/etc/vim/vim/plugged')
+	Plug 'itchyny/lightline.vim'
+	Plug 'dylanaraps/wal.vim'
+call plug#end()
 
-" colorscheme wal
+colorscheme wal
 " let g:lightline = {'colorscheme': 'tomorrow'}
 " colorscheme wal
-" let g:lightline = {'colorscheme': 'wombat'}
+let g:lightline = {'colorscheme': 'wombat'}
 
