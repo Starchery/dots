@@ -1,0 +1,36 @@
+st.foreground: #ffffff
+st.background: #1e1e1e
+! st.foreground:   #000000
+! st.background:   #ffffff
+st.font: GoMono Nerd Font:pixelsize=14:antialias=true:autohint=true;
+st.borderpx: 30
+st.cursorshape: 5
+st.color0:       #1e1e1e
+!st.color1:       #cf6a4c
+st.color1:	 #a1523a
+!st.color2:       #8f9d6a
+st.color2: 	 #808c5e
+st.color3:       #f9ee98
+!st.color4:       #7587a6
+st.color4:	 #78706b
+!st.color5:       #9b859d
+st.color5:       #645366
+st.color6:       #afc4db
+st.color7:       #a7a7a7
+!st.color8:       #5f5a60
+st.color8:       #4e5a5e
+st.color9:       #cf6a4c
+st.color10:      #8f9d6a
+st.color11:      #f9ee98
+st.color12:      #7587a6
+st.color13:      #9b859d
+st.color14:      #afc4db
+st.color15:      #000000
+st.color16:      #cda869
+st.color17:      #9b703f
+st.color18:      #323537
+st.color19:      #464b50
+st.color20:      #838184
+st.color21:      #c3c3c3
+st.opacity:	 100
+st.shell:        /bin/zsh
