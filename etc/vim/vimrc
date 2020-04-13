@@ -4,6 +4,8 @@ set nu rnu
 set hlsearch
 set incsearch
 set ignorecase smartcase
+set cc=79
+set cursorline
 set undodir=$XDG_DATA_HOME/vim
 set directory=$XDG_DATA_HOME/vim
 set backupdir=$XDG_DATA_HOME/vim
@@ -18,6 +20,21 @@ set laststatus=2
 set t_Co=256
 set so=7
 let mapleader = ","
+inoremap jj <Esc>
+let &t_SI = "\<esc>[5 q"
+let &t_SR = "\<esc>[4 q"
+let &t_EI = "\<esc>[2 q"
+
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 3
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 20
+" augroup ProjectDrawer
+" autocmd!
+" autocmd VimEnter * :Vexplore
+" augroup END
+
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 set lazyredraw
@@ -33,8 +50,19 @@ call plug#begin('/home/randy/etc/vim/vim/plugged')
     Plug 'dylanaraps/wal.vim'
     Plug 'chrisbra/vim-commentary'
     Plug 'tpope/vim-surround'
+    Plug 'lambdalisue/fern.vim'
+    " Plug 'bling/vim-bufferline'
+    " Plug 'chrisbra/Colorizer'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+" augroup ProjectDrawer
+" autocmd!
+" autocmd * Fern . -drawer -stay
+" augroup END
+
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
 
 colorscheme wal
 " let g:lightline = {'colorscheme': 'tomorrow'}

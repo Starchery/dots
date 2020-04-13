@@ -69,6 +69,7 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 #define CMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define TERM(cmd) { .v = (const char*[]){ "xst", "-e", cmd, NULL } }
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -92,6 +93,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     XK_t,      spawn,          CMD("/home/randy/bin/todo") }, // run dmenu todo script
 	{ MODKEY|ControlMask,   XK_0,      spawn,          CMD("/home/randy/bin/goodbye") }, // run dmenu shutdown script
 	{ MODKEY,               XK_p,      spawn,          CMD("/home/randy/bin/screenshot") }, // run dmenu screenshot script
+	{ MODKEY|ControlMask,   XK_c,      spawn,          TERM("/home/randy/bin/cfg") }, // edit configs
 
 	{ MODKEY,		XK_minus,  setgaps,        { .i = -1 } }, // reduce gaps
 	{ MODKEY,   	        XK_equal,  setgaps,        { .i = +1 } }, // increase gaps
