@@ -1,4 +1,8 @@
 /* See LICENSE file for copyright and license details. */
+
+/* for volume keys */
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const unsigned int borderpx    = 3;        /* border pixel of windows */
 static const unsigned int snap        = 12;       /* snap pixel */
@@ -82,20 +86,30 @@ static const char *termfloatcmd[] = { "xst", "-T", "xst-float", NULL };
 static const char *explorecmd[]   = { "dolphin", NULL };
 static const char *surfcmd[]      = { "tabbed", "-c", "surf", "-pe", NULL };
 
+/* volume */
+static const char *mutecmd[]    = { "pactl", "set-sink-mute", "0", "toggle", NULL };
+static const char *volupcmd[]   = { "pactl", "set-sink-volume", "0", "+5%", NULL };
+static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
+
 static Key keys[] = {
 	/* modifier             key        function        argument */
 	{ MODKEY|ShiftMask,     XK_Return, spawn,          {.v = termfloatcmd } }, // spawn a floating terminal
-	{ MODKEY,		XK_d,      spawn,	   {.v = dmenucmd } }, // start dmenu_run
+	{ MODKEY,	        	XK_d,      spawn,	       {.v = dmenucmd } }, // start dmenu_run
 	{ MODKEY,               XK_Return, spawn,          {.v = termcmd } }, // spawn a terminal
-	{ MODKEY,		XK_e,	   spawn,	   {.v = explorecmd } }, // spawn file manager
+	{ MODKEY,	        	XK_e,	   spawn,	       {.v = explorecmd } }, // spawn file manager
 	{ MODKEY,               XK_w,      spawn,          {.v = surfcmd } }, // spawn web browser
 
 	{ MODKEY|ShiftMask,     XK_t,      spawn,          CMD("/home/randy/bin/todo") }, // run dmenu todo script
 	{ MODKEY|ControlMask,   XK_0,      spawn,          CMD("/home/randy/bin/goodbye") }, // run dmenu shutdown script
 	{ MODKEY,               XK_p,      spawn,          CMD("/home/randy/bin/screenshot") }, // run dmenu screenshot script
-	{ MODKEY|ControlMask,   XK_c,      spawn,          TERM("/home/randy/bin/cfg") }, // edit configs
+/* { MODKEY|ControlMask,   XK_c,      spawn,          TERM("/home/randy/bin/cfg") }, // edit configs */
 
-	{ MODKEY,		XK_minus,  setgaps,        { .i = -1 } }, // reduce gaps
+    /* volume cmds */
+    { 0,      XF86XK_AudioMute,        spawn,          { .v = mutecmd } },
+    { 0,      XF86XK_AudioLowerVolume, spawn,          { .v = voldowncmd } },
+    { 0,      XF86XK_AudioRaiseVolume, spawn,          { .v = volupcmd } },
+
+	{ MODKEY,		        XK_minus,  setgaps,        { .i = -1 } }, // reduce gaps
 	{ MODKEY,   	        XK_equal,  setgaps,        { .i = +1 } }, // increase gaps
 
 	{ MODKEY,               XK_b,      togglebar,      {0} }, // toggle bar
@@ -103,17 +117,16 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     XK_k,      rotatestack,    {.i = -1 } }, // move window up stack
 	{ MODKEY,               XK_j,      focusstack,     {.i = +1 } }, // focus window below current
 	{ MODKEY,               XK_k,      focusstack,     {.i = -1 } }, // focus window above current
-	// { MODKEY,               XK_i,      incnmaster,     {.i = +1 } },
-	// { MODKEY,               XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,               XK_h,      setmfact,       {.f = -0.05} }, // resize <<-
-	//{ MODKEY,               XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,               XK_i,      setmfact,       {.f = +0.05} }, // resize ->>
 	{ MODKEY|ControlMask,   XK_Return, zoom,           {0} }, // send window to master
-	// { MODKEY,               XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,     XK_c,      killclient,     {0} }, // close window
 	{ MODKEY|ShiftMask,     XK_q,      killclient,     {0} }, // close window
-	{ MODKEY|Mod1Mask,      XK_F4,     quit,	   {0} }, // quit dwm
-        { MODKEY|ShiftMask,     XK_r,      quit,           {1} }, // reload/restart dwm
+	{ MODKEY|Mod1Mask,      XK_F4,     quit,	       {0} }, // quit dwm
+    { MODKEY|ShiftMask,     XK_r,      quit,           {1} }, // reload/restart dwm
+	// { MODKEY,               XK_i,      incnmaster,     {.i = +1 } },
+	// { MODKEY,               XK_d,      incnmaster,     {.i = -1 } },
+	// { MODKEY,               XK_Tab,    view,           {0} },
 
     /* Layout manipulation */
 	{ MODKEY,               XK_Tab,    cyclelayout,    {.i = -1 } }, // cycle layouts

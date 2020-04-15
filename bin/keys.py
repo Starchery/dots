@@ -96,7 +96,7 @@ def show_keybindings() -> None:
     def maxlen(group: Sequence[Hotkey]) -> int:
         return len(max(group, key=lambda x: len(x[0]))[0])
 
-    for group in bifurcate(parse("/opt/dwm-distrotube-git/config.h")):
+    for group in bifurcate(parse("/home/randy/etc/src/dwm/config.h")):
         for key in group:
             print(f"{key[0].ljust(maxlen(group))}: {key[1]}")
         print()

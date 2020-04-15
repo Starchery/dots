@@ -28,6 +28,8 @@ export XDG_CACHE_HOME="${XDG_CONFIG_HOME}/cache"
 export XDG_DATA_HOME="${XDG_CONFIG_HOME}/share"
 export XDG_RUNTIME_DIR="${XDG_CONFIG_HOME}/tmp"
 export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
+export CARGO_HOME="${HOME}/bin/cargo"
+export RUSTUP_HOME="${XDG_CONFIG_HOME}/rustup"
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
 export XSERVERRC="${XDG_CONFIG_HOME}/X11/xserverrc"
 export VIMINIT=":source ${XDG_CONFIG_HOME}/vim/vimrc"
@@ -41,6 +43,8 @@ export TEMP="$TMP"
 export TMPDIR="$TMP"
 export TMPPREFIX="${TMPDIR}/zsh"
 export PATH="${PATH}:${HOME}/.local/bin/"
+export PATH="${CARGO_HOME}/bin:$PATH"
+export PATH="${HOME}/bin:$PATH"
 (cat "${XDG_CACHE_HOME}/wal/sequences" &)
 
 if [ ! -d "${TMP}" ]; then mkdir "${TMP}"; fi
@@ -527,7 +531,7 @@ alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias ls='ls --color=auto --human-readable --group-directories-first --classify'
 alias ll='ls --color=auto --human-readable --group-directories-first --classify -l'
-alias la='ls --color=auto --human-readable --group-directories-first --classify -la'
+alias la='ls --color=auto --human-readable --group-directories-first --classify -lA'
 alias dl="yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro yay -S"
 alias mkcd='{ IFS= read -r d && mkdir "$d" && cd "$d"; } <<<'
 alias rm='rmtrash'

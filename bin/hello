@@ -1,4 +1,5 @@
 #!/bin/sh
 
+[ "$1" ] && echo "Hello, $(whoami)"
 xinitdir="$XDG_CONFIG_HOME/X11/xinit"
 startx "$xinitdir/xinitrc" -- "$xinitdir/xserverrc" vt1
