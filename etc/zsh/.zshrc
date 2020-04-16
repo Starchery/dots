@@ -592,3 +592,4 @@ source ~/etc/src/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/etc/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+alias dots=dotfiles
