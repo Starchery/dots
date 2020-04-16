@@ -593,3 +593,13 @@ source ~/etc/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 alias dots=dotfiles
+alias ghost=gs
+alias gs='git status'
+alias gl='git log'
+alias gc='git commit -am'
+alias ga='git add -u'
+
+alias ds='dots status'
+alias dlo='dots log'
+alias da='dots add -u'
+alias dc='dots commit -am'
