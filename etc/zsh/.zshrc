@@ -38,6 +38,7 @@ export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
 export LESSKEY="${XDG_CONFIG_HOME}/less/lesskey"
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
 export EDITOR="/usr/bin/vim"
+export BAT_THEME="base16"
 export TMP="${XDG_CONFIG_HOME}/tmp"
 export TEMP="$TMP"
 export TMPDIR="$TMP"
@@ -520,6 +521,7 @@ alias ln='ln -v'
 alias chmod="chmod -c"
 alias chown="chown -c"
 alias mkdir="mkdir -v"
+alias ..='cd ..'
 
 if command -v colordiff > /dev/null 2>&1; then
     alias diff="colordiff -Nuar"
@@ -534,47 +536,57 @@ alias ll='ls --color=auto --human-readable --group-directories-first --classify 
 alias la='ls --color=auto --human-readable --group-directories-first --classify -lA'
 alias dl="yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro yay -S"
 alias mkcd='{ IFS= read -r d && mkdir "$d" && cd "$d"; } <<<'
+alias cl='{ IFS= read -r d && cd "$d" && ls; } <<<'
+alias 0x0st='{ IFS= read -r d && curl -F"file=@$d" http://0x0.st; } <<<'
 alias rm='rmtrash'
 alias rmdir='rmdirtrash'
 alias sudo='sudo '
+alias ls='exa --icons --group-directories-first'
+alias ll='ls -l --git'
+alias la='ll -a'
+# alias cd='cl'
+alias l='ls'
+alias g='grep'
+alias c='cd'
+alias lang='cd ~/src/lang && ll'
 
 
 # Keys.
-case $TERM in
-    rxvt*|xterm*)
-        bindkey "^[[7~" beginning-of-line #Home key
-        #bindkey "^[[8~" end-of-line #End key
-        bindkey "^[[3~" delete-char #Del key
-        bindkey "^[[A" history-beginning-search-backward #Up Arrow
-        bindkey "^[[B" history-beginning-search-forward #Down Arrow
-        bindkey "^[Oc" forward-word # control + right arrow
-        bindkey "^[Od" backward-word # control + left arrow
-        bindkey "^H" backward-kill-word # control + backspace
-        bindkey "^[[3^" kill-word # control + delete
-    ;;
+# case $TERM in
+# rxvt*|xterm*)
+# bindkey "^[[7~" beginning-of-line #Home key
+bindkey "^[[8~" end-of-line #End key
+# bindkey "^[[3~" delete-char #Del key
+# bindkey "^[[A" history-beginning-search-backward #Up Arrow
+# bindkey "^[[B" history-beginning-search-forward #Down Arrow
+# bindkey "^[Oc" forward-word # control + right arrow
+# bindkey "^[Od" backward-word # control + left arrow
+# bindkey "^H" backward-kill-word # control + backspace
+# bindkey "^[[3^" kill-word # control + delete
+# ;;
 
-    linux)
-        bindkey "^[[1~" beginning-of-line #Home key
-        #bindkey "^[[4~" end-of-line #End key
-        bindkey "^[[3~" delete-char #Del key
-        bindkey "^[[A" history-beginning-search-backward
-        bindkey "^[[B" history-beginning-search-forward
-    ;;
+# linux)
+# bindkey "^[[1~" beginning-of-line #Home key
+bindkey "^[[4~" end-of-line #End key
+# bindkey "^[[3~" delete-char #Del key
+# bindkey "^[[A" history-beginning-search-backward
+# bindkey "^[[B" history-beginning-search-forward
+# ;;
 
-    screen|screen-*)
-        bindkey "^[[1~" beginning-of-line #Home key
-        #bindkey "^[[4~" end-of-line #End key
-        bindkey "^[[3~" delete-char #Del key
-        bindkey "^[[A" history-beginning-search-backward #Up Arrow
-        bindkey "^[[B" history-beginning-search-forward #Down Arrow
-        bindkey "^[Oc" forward-word # control + right arrow
-        bindkey "^[OC" forward-word # control + right arrow
-        bindkey "^[Od" backward-word # control + left arrow
-        bindkey "^[OD" backward-word # control + left arrow
-        bindkey "^H" backward-kill-word # control + backspace
-        bindkey "^[[3^" kill-word # control + delete
-    ;;
-esac
+# screen|screen-*)
+# bindkey "^[[1~" beginning-of-line #Home key
+bindkey "^[[4~" end-of-line #End key
+# bindkey "^[[3~" delete-char #Del key
+# bindkey "^[[A" history-beginning-search-backward #Up Arrow
+# bindkey "^[[B" history-beginning-search-forward #Down Arrow
+# bindkey "^[Oc" forward-word # control + right arrow
+# bindkey "^[OC" forward-word # control + right arrow
+# bindkey "^[Od" backward-word # control + left arrow
+# bindkey "^[OD" backward-word # control + left arrow
+# bindkey "^H" backward-kill-word # control + backspace
+# bindkey "^[[3^" kill-word # control + delete
+# ;;
+# esac
 
 # Replaced with _history_search_with_fzy
 bindkey "^R" history-incremental-pattern-search-backward 
@@ -598,8 +610,13 @@ alias gs='git status'
 alias gl='git log'
 alias gc='git commit -am'
 alias ga='git add -u'
+alias gd='git diff'
 
 alias ds='dots status'
 alias dlo='dots log'
 alias da='dots add -u'
 alias dc='dots commit -am'
+alias dd='dots diff'
+alias cat='bat'
+
+pfetch 

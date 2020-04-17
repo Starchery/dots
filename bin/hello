@@ -2,4 +2,4 @@
 
 [ "$1" ] && echo "Hello, $(whoami)"
 xinitdir="$XDG_CONFIG_HOME/X11/xinit"
-startx "$xinitdir/xinitrc" -- "$xinitdir/xserverrc" vt1
+startx "$xinitdir/xinitrc" -- "$xinitdir/xserverrc" vt1 &> /dev/null

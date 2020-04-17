@@ -52,7 +52,7 @@ call plug#begin('/home/randy/etc/vim/vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'lambdalisue/fern.vim'
     " Plug 'bling/vim-bufferline'
-    " Plug 'chrisbra/Colorizer'
+    Plug 'chrisbra/Colorizer'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
