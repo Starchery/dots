@@ -1,0 +1,264 @@
+@import "scrollbars.css";
+
+/*bg : #1E2327;*/
+/*fg : #663AB7;*/
+
+/* New Tab Flash */
+:root{--newtab-textbox-background-color:#1f1d1d;}
+::-moz-selection {background-color:#ab97a5 !important;}
+
+#browser vbox#appcontent tabbrowser,
+#content, 
+#tabbrowser-tabpanels,
+browser[type=content-primary],
+browser[type=content] > html{
+    background: #1f1d1d !important
+}
+
+.tab-line {
+display : none !important;
+}
+
+/* Toolbar buttons */
+.toolbarbutton-1 {
+    fill: #746683 !important;
+    background-color: #1f1d1d !important;
+}
+
+/* Remove border under navbar */
+#navigator-toolbox::after {
+  border-bottom: 0px !important;
+}
+
+/* remove some borders */
+#navigator-toolbox {
+  border: none !important;
+}
+
+#titlebar {
+  border: none !important;
+}
+
+#tabbrowser-tabs {
+background-color: #1f1d1d !important;
+}
+
+/*
+.tabbrowser-arrowscrollbox {
+  border: none !important;
+  min-width: 10;
+}
+
+.tab-drop-indicator-box {
+  border: none !important;
+  min-width: 10;
+}*/
+
+/* remove lines */
+
+#navigator-toolbox::after {
+  display: none !important;
+}
+
+#nav-bar, #TabsToolbar {
+  border: none !important;
+ /* max-height: 32px !important;*/
+  /*margin-top: -2px;*/
+}
+
+/*#PersonalToolbar {
+  border: none !important;
+}
+*/
+/*#content-deck {
+  border: none !important;
+}*/
+
+.tabbrowser-tab::before, 
+.tabbrowser-tab::after{
+  display: none !important;
+
+}
+tab
+{
+    background-color: #1f1d1d !important;
+    font-weight: thin !important;
+    color : #746683 !important;
+}
+
+
+.tab-content[selected="true"]
+{
+    background-color: #1f1d1d !important;
+    font-weight: bold !important;
+    color : #746683 !important;
+}
+
+#nav-bar-customization-target {
+	background-color: #1f1d1d !important;
+}
+
+
+.tabbrowser-tab{ opacity: 0.5 }
+.tabbrowser-tab:hover{ 
+    opacity: 0.75;
+/* background-image: linear-gradient(to left, #937281, #ab97a5) !important; */
+}
+.tabbrowser-tab[selected]{ 
+    opacity: 1;
+/* background-image: linear-gradient(to left, #746683, #746683) !important; */
+}
+
+#urlbar{
+	box-shadow: none !important;
+	background-color: #1f1d1d !important;
+	background: none !important;
+	border: none !important;
+	color : #746683 !important;
+	font-weight: bold !important;
+}
+
+#urlbar:hover{
+  box-shadow: none !important;
+}
+
+#tracking-protection-icon-container,#pageActionSeparator{ border-inline-width: 0px !important; }
+.urlbar-icon,
+.urlbar-icon-wrapper,
+#tabbrowser-tabs toolbarbutton,
+toolbar toolbarbutton > .toolbarbutton-icon,
+toolbar toolbarbutton > .toolbarbutton-badge-stack,
+.titlebar-button,
+#identity-box,
+#tracking-protection-icon-container,
+.findbar-textbox~toolbarbutton,
+toolbarbutton.scrollbutton-up,
+toolbarbutton.scrollbutton-down{ background-color: transparent !important;}
+
+.tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected="true"]):not([multiselected]){ background-color: transparent !important }
+
+/*Tabs below nav bar*/
+#nav-bar { 
+  -moz-box-ordinal-group: 1 !important;
+}
+#PersonalToolbar { 
+  -moz-box-ordinal-group: 2 !important;
+}
+#titlebar { 
+  -moz-box-ordinal-group: 3 !important;
+}
+
+#navigator-toolbox{ 
+  margin-top: 0px;
+  padding-top:0px !important; 
+}
+#toolbar-menubar{
+  position: fixed;
+  top: 0px;
+}
+
+/*#navigator-toolbox { --tabs-border-color: transparent !important; }*//* remove weird line*/
+
+
+#tabbrowser-tabs,
+.tabbrowser-arrowscrollbox {
+  min-height: 0 !important;
+}
+
+.tabbrowser-tab {
+  min-height: var(--tab-min-height);
+}
+
+.tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"] {
+  visibility: collapse;
+}
+
+#tabbrowser-tabs .tabs-newtab-button {
+  height: 0 !important;
+  min-height:0 !important;
+  margin-bottom: 0 !important;  /* fixes a 1px bug */
+}
+
+/* Hide other buttons that might have been added to the TabToolbar */
+#TabsToolbar .toolbarbutton-1 {
+  height: 0 !important;
+  min-height:0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* FULLSCREEN */
+
+#window-controls {
+  display: none;
+}
+
+
+/* PRIVATE BROWSING */
+
+window[privatebrowsingmode] .private-browsing-indicator {
+  display: none;
+}
+
+window[privatebrowsingmode] #urlbar {
+  background: #82c8 !important;
+}
+
+window[privatebrowsingmode] #identity-icon {
+  list-style-image: url(chrome://browser/skin/private-browsing.svg) !important;
+}
+
+
+/* VARIOUS FIXES */
+
+/* Dim unloaded tabs */
+.tabbrowser-tab[pending] {
+  opacity: .5;
+}
+
+/* After using the global menu once on Ubuntu 16.04
+   i was left with a line at the top of the window.
+   Fixes a 1px bug after using the global menu */
+#toolbar-menubar {
+  padding: 0 !important;
+}
+
+
+#tracking-protection-icon-box {
+    display: none !important;
+}
+
+/* Hide the green lock indicating SSL (HTTPS, encrypted connection) from the address bar.  */
+#urlbar[pageproxystate="valid"] :-moz-any(.verifiedDomain,.verifiedIdentity) #connection-icon {
+  display: none !important;
+}
+
+
+/* Hides the website name (when present) from the address bar, keeping only the location abbrevation.*/
+#identity-icon-label { /* Hides the EV SSL label */
+  visibility: collapse !important;
+}
+
+#identity-box:hover > #identity-icon-labels > #identity-icon-label { /* Shows the label on identity box hover */
+  visibility: visible !important;
+}
+
+/* Hide info icon for sites that don't have permissions */
+#identity-box > #identity-icon {
+	opacity: 0 !important; /* Make icons transparent */
+	-moz-margin-end: -1.1em !important; /* Hide icons by offsetting them */
+}
+
+
+/* Show Tab close button on hover */
+.tabbrowser-tab:not([pinned]) .tab-close-button {
+  display: -moz-box !important;
+  opacity: 0;
+  visibility: collapse !important;
+ transition: opacity 0.25s, visibility 0.25s ease-in !important;
+
+}
+.tabbrowser-tab:not([pinned]):hover .tab-close-button {
+  opacity: 1;
+  visibility: visible !important; 
+}

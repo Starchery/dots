@@ -611,12 +611,14 @@ alias gl='git log'
 alias gc='git commit -am'
 alias ga='git add -u'
 alias gd='git diff'
+alias gp='git push'
 
 alias ds='dots status'
 alias dlo='dots log'
 alias da='dots add -u'
 alias dc='dots commit -am'
 alias dd='dots diff'
+alias dp='dots push'
 alias cat='bat'
 
 pfetch 
