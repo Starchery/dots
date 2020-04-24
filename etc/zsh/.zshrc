@@ -522,6 +522,14 @@ alias chmod="chmod -c"
 alias chown="chown -c"
 alias mkdir="mkdir -v"
 alias ..='cd ..'
+alias pas='pulseaudio --start'
+alias pac='pulseaudio --check;echo $?'
+alias pak='pulseaudio --kill'
+alias vup='pactl set-sink-volume 0 +5%'
+alias vdown='pactl set-sink-volume 0 -5%'
+alias neo='neofetch'
+alias colors='head -1 ~/tmp/colors;neo --block_width 8;tail -1 ~/tmp/colors'
+alias md='mkdir'
 
 if command -v colordiff > /dev/null 2>&1; then
     alias diff="colordiff -Nuar"
@@ -536,6 +544,7 @@ alias ll='ls --color=auto --human-readable --group-directories-first --classify 
 alias la='ls --color=auto --human-readable --group-directories-first --classify -lA'
 alias dl="yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro yay -S"
 alias mkcd='{ IFS= read -r d && mkdir "$d" && cd "$d"; } <<<'
+alias mkdir='mkcd'
 alias cl='{ IFS= read -r d && cd "$d" && ls; } <<<'
 alias 0x0st='{ IFS= read -r d && curl -F"file=@$d" http://0x0.st; } <<<'
 alias rm='rmtrash'

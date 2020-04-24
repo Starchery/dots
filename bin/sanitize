@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+
+# Clean evil filenames by removing whitespace,
+# making everything lowercase, and distinguishing
+# author from document in a consistent and clear way.
+
+# TODO: make this less hideous
+
+from pathlib import Path
+
+kRed     = "\033[91m"
+kGreen   = "\033[92m"
+kDefault = "\033[0m"
+
+def color(s: str, is_old: bool) -> str:
+    def _color(s: str, c: str) -> str:
+        return c + s + kDefault
+
+    return (kGreen + '-' if not is_old else '-').join("".join(map(
+        lambda c: _color(
+            c if c != ' ' else '_', 
+            kRed if not (c.isdigit() or c in "-_" or c.islower()) 
+                 else (kDefault)),
+        s)).split('-'))
+
+def main() -> None:
+    quote = lambda s: "'" + s + "'"
+    for f in filter(lambda x: x.is_file(), Path.cwd().iterdir()):
+        print(f"{quote(color(f.stem, True))} -> ", end="")
+        print(quote(color(f.rename(Path(
+            "".join(filter(
+                lambda c: c.isalnum() or c.isspace() or c in "-_", 
+                f.stem.lower()))
+            .replace(" - ", "_")
+            .replace(" ", "-") + f.suffix))
+            .stem, False)))
+            
+        
+if __name__ == '__main__':
+    main()
