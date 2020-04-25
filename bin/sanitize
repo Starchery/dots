@@ -7,34 +7,45 @@
 # TODO: make this less hideous
 
 from pathlib import Path
-
-kRed     = "\033[91m"
-kGreen   = "\033[92m"
-kDefault = "\033[0m"
+from sys import argv
 
 def color(s: str, is_old: bool) -> str:
+    red     = "\033[91m"
+    green   = "\033[92m"
+    default = "\033[0m"
     def _color(s: str, c: str) -> str:
-        return c + s + kDefault
+        return c + s + default
 
-    return (kGreen + '-' if not is_old else '-').join("".join(map(
+    return (green + '-' if not is_old else '-').join("".join(map(
         lambda c: _color(
             c if c != ' ' else '_', 
-            kRed if not (c.isdigit() or c in "-_" or c.islower()) 
-                 else (kDefault)),
+            red if not (c.isdigit() or c in "-_" or c.islower()) 
+                 else default),
         s)).split('-'))
 
-def main() -> None:
-    quote = lambda s: "'" + s + "'"
-    for f in filter(lambda x: x.is_file(), Path.cwd().iterdir()):
-        print(f"{quote(color(f.stem, True))} -> ", end="")
-        print(quote(color(f.rename(Path(
-            "".join(filter(
-                lambda c: c.isalnum() or c.isspace() or c in "-_", 
-                f.stem.lower()))
-            .replace(" - ", "_")
-            .replace(" ", "-") + f.suffix))
-            .stem, False)))
+def _sanitize(f):
+    def quote(s: str): 
+        return "'" + s + "'"
+
+    return f"{quote(color(f.stem, True))} -> " + quote(color(f.rename(Path(
+        "".join(filter(
+            lambda c: c.isalnum() or c.isspace() or c in "-_", 
+            f.stem.lower()))
+        .replace(" - ", "_")
+        .replace(" ", "-") + f.suffix))
+        .stem, False))
+
+def sanitize(p=False) -> str:
+    return '\n'.join(
+        map(_sanitize, 
+            p if p else filter(lambda x: x.is_file(), 
+                               Path.cwd().iterdir())))
             
+def main():
+    try:
+        print(sanitize([Path(arg) for arg in argv[1:]]))
+    except IndexError:
+        print(sanitize())
         
 if __name__ == '__main__':
     main()
