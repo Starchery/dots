@@ -63,7 +63,7 @@ hi DiffText ctermbg=NONE ctermfg=4
 hi IncSearch ctermbg=3 ctermfg=0
 hi Search ctermbg=3 ctermfg=0
 hi Directory ctermbg=NONE ctermfg=4
-hi MatchParen ctermbg=3 ctermfg=7
+hi MatchParen ctermbg=238 ctermfg=7
 hi ColorColumn ctermbg=235 ctermfg=0
 hi signColumn ctermbg=NONE ctermfg=4
 hi ErrorMsg ctermbg=NONE ctermfg=8

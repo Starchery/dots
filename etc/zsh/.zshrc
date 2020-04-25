@@ -96,6 +96,21 @@ cd() {
     fi
 }
 
+background() {
+    ( "$1" "$2" >/dev/null 2>&1 & )
+}
+
+DISABLE_AUTO_TITLE="true"
+chpwd() {
+    prog='import sys; print(" ".join(sys.stdin.read().split()))'
+    task="$( jobs | awk '{print $4}' | tr '\n' ' ' | python -c ${prog} )"
+    if [[ -n "$task" ]] then
+        echo -ne "\033]0;$(print -P %~ \(${task}\))\007"
+    else
+        echo -ne "\033]0;$(print -P %~)\007"
+    fi
+}
+
 run_under_tmux() {
     # Run $1 under session or attach if such session already exist.
     # $2 is optional path, if no specified, will use $1 from $PATH.
