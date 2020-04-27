@@ -644,5 +644,3 @@ alias dc='dots commit -am'
 alias dd='dots diff'
 alias dp='dots push'
 alias cat='bat'
-
-pfetch 
